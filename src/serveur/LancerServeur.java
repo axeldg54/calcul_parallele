@@ -9,13 +9,14 @@ public class LancerServeur {
         int port=3333;
         if(args.length > 0) port=Integer.parseInt(args[0]);
 
-        Distributeur distributeur = new Distributeur();
+        ServiceDistributeur distributeur = new Distributeur();
 
         ServiceDistributeur serviceDistributeur=null;
 
         try {
             serviceDistributeur = (ServiceDistributeur) UnicastRemoteObject.exportObject(distributeur, 0);
         } catch (RemoteException e) {
+            System.out.println(e.getMessage());
             System.out.println("service : L'exportation n'a pas fonctionné");
             System.exit(1);
         }

@@ -1,5 +1,3 @@
-package raytracer;
-
 import java.rmi.Remote;
 
 public interface ServiceCalcul extends Remote {

@@ -1,5 +1,3 @@
-package raytracer;
-
 import java.awt.Color;
 import java.io.*;
 
