@@ -1,8 +1,7 @@
-package raytracer;
 import java.util.*;
 import java.io.*;
 
-public class Scene implements Serializable, ServiceScene{
+public class Scene implements Serializable, ServiceCalcul{
 
     private static float EPSILON = 1E-3f;
     private HashSet<Primitive> objets;

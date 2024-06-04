@@ -1,10 +1,15 @@
 import java.time.Instant;
+<<<<<<< HEAD
 import java.time.Duration;
 import java.util.ArrayList;
+=======
+>>>>>>> f58d3268d7793eabc79c07234f7f3e2e42ae8d2a
 
-import raytracer.Disp;
-import raytracer.Scene;
-import raytracer.Image;
+import client.Disp;
+import client.Image;
+import client.Scene;
+
+import java.time.Duration;
 
 public class LancerRaytracer {
 
@@ -48,6 +53,7 @@ public class LancerRaytracer {
         DecoupeImage decoupeImage = new DecoupeImage(scene, disp);
         ArrayList<Case> liste = decoupeImage.decouper(largeur, hauteur, nbDecoupe);
 
+<<<<<<< HEAD
         for (Case c : liste) {
             // Chronométrage du temps de calcul
             Instant debut = Instant.now();
@@ -65,3 +71,14 @@ public class LancerRaytracer {
         }
     }
 }
+=======
+        long duree = Duration.between(debut, fin).toMillis();
+        
+        System.out.println("Image calculée en :"+duree+" ms");
+        
+        // Affichage de l'image calculée
+        disp.setImage(image, x0, y0);
+        disp.setImage(image1, x1, y1);
+    }	
+}
+>>>>>>> f58d3268d7793eabc79c07234f7f3e2e42ae8d2a
