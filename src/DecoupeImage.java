@@ -1,7 +1,5 @@
-package decoupe;
-import raytracer.Disp;
 import raytracer.Scene;
-
+import raytracer.Disp;
 import java.util.ArrayList;
 
 public class DecoupeImage {
