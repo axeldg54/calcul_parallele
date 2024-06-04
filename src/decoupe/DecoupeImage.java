@@ -1,3 +1,4 @@
+package decoupe;
 import raytracer.Disp;
 import raytracer.Scene;
 
