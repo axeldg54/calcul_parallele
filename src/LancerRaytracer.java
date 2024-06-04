@@ -1,22 +1,11 @@
 import java.time.Instant;
-<<<<<<< HEAD
 import java.time.Duration;
 import java.util.ArrayList;
-=======
->>>>>>> f58d3268d7793eabc79c07234f7f3e2e42ae8d2a
 
-<<<<<<< HEAD
-import client.Disp;
-import client.Image;
-import client.Scene;
-
-import java.time.Duration;
-=======
-import decoupe.*;
 import raytracer.Disp;
 import raytracer.Scene;
 import raytracer.Image;
->>>>>>> bea12114ee23e54d0b905db3acf6ba619ba9e5ad
+
 
 public class LancerRaytracer {
 
@@ -25,7 +14,7 @@ public class LancerRaytracer {
     public static void main(String[] args){
 
         // Le fichier de description de la scène si pas fournie
-        String fichier_description="./src/simple.txt";
+        String fichier_description="simple.txt";
 
         // largeur et hauteur par défaut de l'image à reconstruire
         int largeur = 512, hauteur = 512, nbDecoupe = 16;
@@ -60,7 +49,6 @@ public class LancerRaytracer {
         DecoupeImage decoupeImage = new DecoupeImage(scene, disp);
         ArrayList<Case> liste = decoupeImage.decouper(largeur, hauteur, nbDecoupe);
 
-<<<<<<< HEAD
         for (Case c : liste) {
             // Chronométrage du temps de calcul
             Instant debut = Instant.now();
@@ -76,20 +64,5 @@ public class LancerRaytracer {
             // Affichage de l'image calculée
             disp.setImage(image, c.getX(), c.getY());
         }
-    }
-<<<<<<< HEAD
-}
-=======
-        long duree = Duration.between(debut, fin).toMillis();
-        
-        System.out.println("Image calculée en :"+duree+" ms");
-        
-        // Affichage de l'image calculée
-        disp.setImage(image, x0, y0);
-        disp.setImage(image1, x1, y1);
     }	
 }
->>>>>>> f58d3268d7793eabc79c07234f7f3e2e42ae8d2a
-=======
-}
->>>>>>> bea12114ee23e54d0b905db3acf6ba619ba9e5ad
