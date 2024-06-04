@@ -16,14 +16,18 @@ public class LancerRaytracer {
         String fichier_description="./src/simple.txt";
 
         // largeur et hauteur par défaut de l'image à reconstruire
-        int largeur = 512, hauteur = 512;
+        int largeur = 512, hauteur = 512, nbDecoupe = 16;
         
         if(args.length > 0){
             fichier_description = args[0];
             if(args.length > 1){
                 largeur = Integer.parseInt(args[1]);
-                if(args.length > 2)
+                if(args.length > 2) {
                     hauteur = Integer.parseInt(args[2]);
+                    if (args.length > 3) {
+                        nbDecoupe = Integer.parseInt(args[3]);
+                    }
+                }
             }
         }else{
             System.out.println(aide);
@@ -42,8 +46,7 @@ public class LancerRaytracer {
         // Ici on calcule toute l'image (0,0) -> (largeur, hauteur)
 
         DecoupeImage decoupeImage = new DecoupeImage(scene, disp);
-
-        ArrayList<Case> liste = decoupeImage.decouper(largeur, hauteur, 8);
+        ArrayList<Case> liste = decoupeImage.decouper(largeur, hauteur, nbDecoupe);
 
         for (Case c : liste) {
             // Chronométrage du temps de calcul
