@@ -1,5 +1,6 @@
 import java.time.Instant;
 import java.time.Duration;
+import java.util.ArrayList;
 
 import raytracer.Disp;
 import raytracer.Scene;
@@ -39,27 +40,25 @@ public class LancerRaytracer {
         // - x0 et y0 : correspondant au coin haut à gauche
         // - l et h : hauteur et largeur de l'image calculée
         // Ici on calcule toute l'image (0,0) -> (largeur, hauteur)
-        
-        int x0 = 0, y0 = 0;
-        int l = largeur/2, h = hauteur/2;
 
-        int x1 = largeur/2, y1 = hauteur/2;
-        int l1 = largeur/2, h1 = hauteur/2;
-                
-        // Chronométrage du temps de calcul
-        Instant debut = Instant.now();
-        System.out.println("Calcul de l'image :\n - Coordonnées : "+x0+","+y0
-                           +"\n - Taille "+ largeur + "x" + hauteur);
-        Image image = scene.compute(x0, y0, l, h);
-        Image image1 = scene.compute(x1, y1, l1, h1);
-        Instant fin = Instant.now();
+        DecoupeImage decoupeImage = new DecoupeImage(scene, disp);
 
-        long duree = Duration.between(debut, fin).toMillis();
-        
-        System.out.println("Image calculée en :"+duree+" ms");
-        
-        // Affichage de l'image calculée
-        disp.setImage(image, x0, y0);
-        disp.setImage(image1, x1, y1);
-    }	
+        ArrayList<Case> liste = decoupeImage.decouper(largeur, hauteur, 8);
+
+        for (Case c : liste) {
+            // Chronométrage du temps de calcul
+            Instant debut = Instant.now();
+            System.out.println("Calcul de l'image :\n - Coordonnées : "+c.x+","+c.y
+                    +"\n - Taille "+ largeur + "x" + hauteur);
+            Image image = scene.compute(c.x, c.y, c.largeur, c.hauteur);
+            Instant fin = Instant.now();
+
+            long duree = Duration.between(debut, fin).toMillis();
+
+            System.out.println("Image calculée en :"+duree+" ms");
+
+            // Affichage de l'image calculée
+            disp.setImage(image, c.x, c.y);
+        }
+    }
 }
