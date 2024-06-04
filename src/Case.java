@@ -7,4 +7,20 @@ public class Case {
         this.largeur = largeur;
         this.hauteur = hauteur;
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getLargeur() {
+        return largeur;
+    }
+
+    public int getHauteur() {
+        return hauteur;
+    }
 }
