@@ -5,11 +5,18 @@ import java.util.ArrayList;
 =======
 >>>>>>> f58d3268d7793eabc79c07234f7f3e2e42ae8d2a
 
+<<<<<<< HEAD
 import client.Disp;
 import client.Image;
 import client.Scene;
 
 import java.time.Duration;
+=======
+import decoupe.*;
+import raytracer.Disp;
+import raytracer.Scene;
+import raytracer.Image;
+>>>>>>> bea12114ee23e54d0b905db3acf6ba619ba9e5ad
 
 public class LancerRaytracer {
 
@@ -37,8 +44,8 @@ public class LancerRaytracer {
         }else{
             System.out.println(aide);
         }
-        
-   
+
+
         // création d'une fenêtre 
         Disp disp = new Disp("Raytracer", largeur, hauteur);
         
@@ -57,9 +64,9 @@ public class LancerRaytracer {
         for (Case c : liste) {
             // Chronométrage du temps de calcul
             Instant debut = Instant.now();
-            System.out.println("Calcul de l'image :\n - Coordonnées : "+c.x+","+c.y
+            System.out.println("Calcul de l'image :\n - Coordonnées : "+ c.getX() +","+ c.getY()
                     +"\n - Taille "+ largeur + "x" + hauteur);
-            Image image = scene.compute(c.x, c.y, c.largeur, c.hauteur);
+            Image image = scene.compute(c.getX(), c.getY(), c.getLargeur(), c.getHauteur());
             Instant fin = Instant.now();
 
             long duree = Duration.between(debut, fin).toMillis();
@@ -67,9 +74,10 @@ public class LancerRaytracer {
             System.out.println("Image calculée en :"+duree+" ms");
 
             // Affichage de l'image calculée
-            disp.setImage(image, c.x, c.y);
+            disp.setImage(image, c.getX(), c.getY());
         }
     }
+<<<<<<< HEAD
 }
 =======
         long duree = Duration.between(debut, fin).toMillis();
@@ -82,3 +90,6 @@ public class LancerRaytracer {
     }	
 }
 >>>>>>> f58d3268d7793eabc79c07234f7f3e2e42ae8d2a
+=======
+}
+>>>>>>> bea12114ee23e54d0b905db3acf6ba619ba9e5ad

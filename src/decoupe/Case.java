@@ -1,3 +1,5 @@
+package decoupe;
+
 public class Case {
     int x, y, largeur, hauteur;
 
