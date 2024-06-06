@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.time.Instant;
 import java.rmi.AccessException;
 import java.rmi.ConnectException;
@@ -67,6 +68,58 @@ public class LancerRaytracer {
         try {
             ServiceDistributeur serviceDistributeur = (ServiceDistributeur) reg.lookup("distributeur");
             ArrayList<ServiceCalcul> proxys = serviceDistributeur.proxys;
+
+            // Toutes les combinaisons de traitement avec les proxys et les cases sous forme d'objet Traitement
+            List<Traitement> traitements = new ArrayList<>();
+            for (Proxy proxy : proxys) {
+                for (C c : liste) {
+                    traitements.add(new Traitement(proxy, scene, c));
+                }
+            }
+
+            // La classe ThreadTravailleur qui va exécuter les traitements
+            // Accès à la liste synchronisé pour éviter que plusieurs threads ne fassent le même traitement
+            class ThreadTravailleur extends Thread {
+                private final List<Traitement> traitements;
+
+                public ThreadTravailleur(List<Traitement> traitements) {
+                    this.traitements = traitements;
+                }
+
+                @Override
+                public void run() {
+                    while (true) {
+                        Traitement traitement;
+                        synchronized (traitements) {
+                            if (traitements.isEmpty()) {
+                                break;
+                            }
+                            traitement = traitements.getItem(0);
+                            traitements.remove(0);
+                        }
+                        traitement.run();
+                    }
+                }
+            }
+
+            // Limite de threads
+            // On crée 10 threads qui vont exécuter les traitements
+            int maxThreads = 10;
+            List<Thread> threads = new ArrayList<>();
+            for (int i = 0; i < maxThreads; i++) {
+                Thread thread = new ThreadTravailleur(traitements);
+                threads.add(thread);
+                thread.start();
+            }
+
+            for (Thread thread : threads) {
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
         } catch (ConnectException exception){
             System.out.println("Problème de connexion à l'annuaire");
         } catch (NotBoundException exception){
