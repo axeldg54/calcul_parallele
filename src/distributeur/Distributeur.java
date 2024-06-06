@@ -7,7 +7,7 @@ public class Distributeur implements ServiceDistributeur, Serializable{
     /**
      * Ajoute un petit chinois en plus pour faire le calcul
      * Salaire de 1€ par jour
-     */
+     *
      * @param proxy
      * @throws RemoteException
      */
