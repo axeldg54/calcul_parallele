@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.time.Instant;
 import java.rmi.AccessException;
 import java.rmi.ConnectException;
@@ -8,7 +9,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.time.Duration;
 import java.util.ArrayList;
-
+import java.util.Collections;
+import java.util.List;
 
 public class LancerRaytracer {
 
@@ -17,7 +19,7 @@ public class LancerRaytracer {
     public static void main(String[] args){
 
         // Le fichier de description de la scène si pas fournie
-        String fichier_description="../simple.txt";
+        String fichier_description = "../simple.txt";
 
         // largeur et hauteur par défaut de l'image à reconstruire
         int largeur = 512, hauteur = 512, nbDecoupe = 16;
@@ -42,10 +44,9 @@ public class LancerRaytracer {
                 }
             }
         }
-        }else{
+        } else {
             System.out.println(aide);
         }
-
 
         // création d'une fenêtre 
         Disp disp = new Disp("Raytracer", largeur, hauteur);
@@ -53,99 +54,77 @@ public class LancerRaytracer {
         // Initialisation d'une scène depuis le modèle 
         Scene scene = new Scene(fichier_description, largeur, hauteur);
 
-        //decoupe de l'image et récuparation de l'image découpé dans une liste
+        // découpe de l'image et récupération de l'image découpée dans une liste
         DecoupeImage decoupeImage = new DecoupeImage(scene, disp);
-        ArrayList<Case> liste = decoupeImage.decouper(largeur, hauteur, nbDecoupe);
+        List<Case> cases = Collections.synchronizedList(decoupeImage.decouper(largeur, hauteur, nbDecoupe));
+        synchronized (cases) {
+            Collections.shuffle(cases);
+        }
 
         Registry reg = null;    
 
         try {
-            reg = LocateRegistry.getRegistry(serveur,port);
-        } catch (RemoteException remoteException){
+            reg = LocateRegistry.getRegistry(serveur, port);
+        } catch (RemoteException remoteException) {
             System.out.println("Exception remote");
         }
 
         try {
             ServiceDistributeur serviceDistributeur = (ServiceDistributeur) reg.lookup("distributeur");
-            ArrayList<ServiceCalcul> proxys = serviceDistributeur.proxys;
-
-            // Toutes les combinaisons de traitement avec les proxys et les cases sous forme d'objet Traitement
-            List<Traitement> traitements = new ArrayList<>();
-            for (Proxy proxy : proxys) {
-                for (C c : liste) {
-                    traitements.add(new Traitement(proxy, scene, c));
-                }
+            ArrayList<ServiceCalcul> proxys = serviceDistributeur.getProxys();
+            
+            for (int i = 0; i < proxys.size(); i++) {
+                ServiceCalcul proxy = proxys.get(i);
+                ThreadTravailleur threadTravailleur = new ThreadTravailleur(proxy, scene, cases,disp);
+                threadTravailleur.start();
             }
 
-            // La classe ThreadTravailleur qui va exécuter les traitements
-            // Accès à la liste synchronisé pour éviter que plusieurs threads ne fassent le même traitement
-            class ThreadTravailleur extends Thread {
-                private final List<Traitement> traitements;
-
-                public ThreadTravailleur(List<Traitement> traitements) {
-                    this.traitements = traitements;
-                }
-
-                @Override
-                public void run() {
-                    while (true) {
-                        Traitement traitement;
-                        synchronized (traitements) {
-                            if (traitements.isEmpty()) {
-                                break;
-                            }
-                            traitement = traitements.getItem(0);
-                            traitements.remove(0);
-                        }
-                        traitement.run();
-                    }
-                }
-            }
-
-            // Limite de threads
-            // On crée 10 threads qui vont exécuter les traitements
-            int maxThreads = 10;
-            List<Thread> threads = new ArrayList<>();
-            for (int i = 0; i < maxThreads; i++) {
-                Thread thread = new ThreadTravailleur(traitements);
-                threads.add(thread);
-                thread.start();
-            }
-
-            for (Thread thread : threads) {
-                try {
-                    thread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        } catch (ConnectException exception){
+        } catch (ConnectException exception) {
             System.out.println("Problème de connexion à l'annuaire");
-        } catch (NotBoundException exception){
+        } catch (NotBoundException exception) {
             System.out.println("Nom de service inconnu");
         } catch (AccessException e) {
             System.out.println("Donnée inaccessible");
         } catch (RemoteException e) {
             System.out.println("Exception remote");
         }
+    }    
 
-/**
-        for (Case c : liste) {
-            // Chronométrage du temps de calcul
-            Instant debut = Instant.now();
-            System.out.println("Calcul de l'image :\n - Coordonnées : "+ c.getX() +","+ c.getY()
-                    +"\n - Taille "+ largeur + "x" + hauteur);
-            Image image = scene.compute(c.getX(), c.getY(), c.getLargeur(), c.getHauteur());
-            Instant fin = Instant.now();
+    public static class ThreadTravailleur extends Thread {
+        ServiceCalcul calculateur;
+        Scene scene;
+        List<Case> cases;
+        Disp disp;
 
-            long duree = Duration.between(debut, fin).toMillis();
+        Image imageRes = null;
 
-            System.out.println("Image calculée en :"+duree+" ms");
-
-            // Affichage de l'image calculée
-            disp.setImage(image, c.getX(), c.getY());
+        ThreadTravailleur(ServiceCalcul calc, Scene scene, List<Case> cases, Disp disp){
+            calculateur = calc;
+            this.scene = scene;
+            this.cases = cases;
+            this.disp = disp;
+            imageRes = null;
         }
-        */
-    }	
+
+        public void run() {
+            try {
+                while (true) {
+                    Case tile = null;
+                    synchronized (cases) {
+                        if (!cases.isEmpty()) {
+                            tile = cases.remove(0);
+                        } else {
+                            break;
+                        }
+                    }
+                    if (tile != null) {
+                        imageRes = calculateur.compute(tile, scene);
+                        disp.setImage(imageRes,tile.getX(),tile.getY());
+                    }
+                }
+            } catch (UndeclaredThrowableException e){
+                System.out.println("Calculateur introuvable");
+            }
+        }
+    }
 }
