@@ -1,5 +1,3 @@
-import java.awt.*;
-import java.lang.reflect.UndeclaredThrowableException;
 import java.time.Instant;
 import java.rmi.AccessException;
 import java.rmi.ConnectException;
@@ -9,8 +7,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+
 
 public class LancerRaytracer {
 
@@ -19,7 +16,7 @@ public class LancerRaytracer {
     public static void main(String[] args){
 
         // Le fichier de description de la scène si pas fournie
-        String fichier_description = "../simple.txt";
+        String fichier_description="../simple.txt";
 
         // largeur et hauteur par défaut de l'image à reconstruire
         int largeur = 512, hauteur = 512, nbDecoupe = 16;
@@ -44,9 +41,10 @@ public class LancerRaytracer {
                 }
             }
         }
-        } else {
+        }else{
             System.out.println(aide);
         }
+
 
         // création d'une fenêtre 
         Disp disp = new Disp("Raytracer", largeur, hauteur);
@@ -54,77 +52,47 @@ public class LancerRaytracer {
         // Initialisation d'une scène depuis le modèle 
         Scene scene = new Scene(fichier_description, largeur, hauteur);
 
-        // découpe de l'image et récupération de l'image découpée dans une liste
+        //decoupe de l'image et récuparation de l'image découpé dans une liste
         DecoupeImage decoupeImage = new DecoupeImage(scene, disp);
-        List<Case> cases = Collections.synchronizedList(decoupeImage.decouper(largeur, hauteur, nbDecoupe));
-        synchronized (cases) {
-            Collections.shuffle(cases);
-        }
+        ArrayList<Case> liste = decoupeImage.decouper(largeur, hauteur, nbDecoupe);
 
         Registry reg = null;    
 
         try {
-            reg = LocateRegistry.getRegistry(serveur, port);
-        } catch (RemoteException remoteException) {
+            reg = LocateRegistry.getRegistry(serveur,port);
+        } catch (RemoteException remoteException){
             System.out.println("Exception remote");
         }
 
         try {
             ServiceDistributeur serviceDistributeur = (ServiceDistributeur) reg.lookup("distributeur");
-            ArrayList<ServiceCalcul> proxys = serviceDistributeur.getProxys();
-            
-            for (int i = 0; i < proxys.size(); i++) {
-                ServiceCalcul proxy = proxys.get(i);
-                ThreadTravailleur threadTravailleur = new ThreadTravailleur(proxy, scene, cases,disp);
-                threadTravailleur.start();
-            }
-
-        } catch (ConnectException exception) {
+            ArrayList<ServiceCalcul> proxys = serviceDistributeur.proxys;
+        } catch (ConnectException exception){
             System.out.println("Problème de connexion à l'annuaire");
-        } catch (NotBoundException exception) {
+        } catch (NotBoundException exception){
             System.out.println("Nom de service inconnu");
         } catch (AccessException e) {
             System.out.println("Donnée inaccessible");
         } catch (RemoteException e) {
             System.out.println("Exception remote");
         }
-    }    
 
-    public static class ThreadTravailleur extends Thread {
-        ServiceCalcul calculateur;
-        Scene scene;
-        List<Case> cases;
-        Disp disp;
+/**
+        for (Case c : liste) {
+            // Chronométrage du temps de calcul
+            Instant debut = Instant.now();
+            System.out.println("Calcul de l'image :\n - Coordonnées : "+ c.getX() +","+ c.getY()
+                    +"\n - Taille "+ largeur + "x" + hauteur);
+            Image image = scene.compute(c.getX(), c.getY(), c.getLargeur(), c.getHauteur());
+            Instant fin = Instant.now();
 
-        Image imageRes = null;
+            long duree = Duration.between(debut, fin).toMillis();
 
-        ThreadTravailleur(ServiceCalcul calc, Scene scene, List<Case> cases, Disp disp){
-            calculateur = calc;
-            this.scene = scene;
-            this.cases = cases;
-            this.disp = disp;
-            imageRes = null;
+            System.out.println("Image calculée en :"+duree+" ms");
+
+            // Affichage de l'image calculée
+            disp.setImage(image, c.getX(), c.getY());
         }
-
-        public void run() {
-            try {
-                while (true) {
-                    Case tile = null;
-                    synchronized (cases) {
-                        if (!cases.isEmpty()) {
-                            tile = cases.remove(0);
-                        } else {
-                            break;
-                        }
-                    }
-                    if (tile != null) {
-                        imageRes = calculateur.compute(tile, scene);
-                        disp.setImage(imageRes,tile.getX(),tile.getY());
-                    }
-                }
-            } catch (UndeclaredThrowableException e){
-                System.out.println("Calculateur introuvable");
-            }
-        }
-    }
+        */
+    }	
 }
