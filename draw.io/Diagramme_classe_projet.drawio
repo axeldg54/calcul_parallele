@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-06-06T06:53:15.886Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.4.13 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="8WoMFHHMPVNmC7RtGKY6" version="24.4.13" type="device">
+<mxfile host="Electron" modified="2024-06-06T12:00:10.502Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.4.13 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="BlZ1NKMNmxl6E6O-IqtF" version="24.4.13" type="device">
   <diagram name="Page-1" id="hojKvll_BSdD_xnf5zBK">
-    <mxGraphModel dx="875" dy="1687" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1400" dy="1997" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -80,14 +80,14 @@
         <mxCell id="1oYp3eJM_BddGtKsW7Qt-25" value="Disp" style="html=1;whiteSpace=wrap;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="200" y="320" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="1oYp3eJM_BddGtKsW7Qt-26" value="scene" style="html=1;verticalAlign=bottom;endArrow=open;curved=0;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="1oYp3eJM_BddGtKsW7Qt-24" target="1oYp3eJM_BddGtKsW7Qt-17" edge="1">
+        <mxCell id="1oYp3eJM_BddGtKsW7Qt-26" value="scene" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endFill=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="1oYp3eJM_BddGtKsW7Qt-24" target="1oYp3eJM_BddGtKsW7Qt-17" edge="1">
           <mxGeometry x="0.0356" y="-29" width="80" relative="1" as="geometry">
             <mxPoint x="544" y="830" as="sourcePoint" />
             <mxPoint x="655" y="830" as="targetPoint" />
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="1oYp3eJM_BddGtKsW7Qt-27" value="disp" style="html=1;verticalAlign=bottom;endArrow=open;curved=0;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="1oYp3eJM_BddGtKsW7Qt-24" target="1oYp3eJM_BddGtKsW7Qt-25" edge="1">
+        <mxCell id="1oYp3eJM_BddGtKsW7Qt-27" value="disp" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endFill=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="1oYp3eJM_BddGtKsW7Qt-24" target="1oYp3eJM_BddGtKsW7Qt-25" edge="1">
           <mxGeometry x="0.0448" y="-14" width="80" relative="1" as="geometry">
             <mxPoint x="490" y="1210" as="sourcePoint" />
             <mxPoint x="610" y="410" as="targetPoint" />
@@ -109,8 +109,8 @@
         <mxCell id="a-YRZIdJ3hHmRJjhJrP--4" value="Classe permettant de découper une image en Cases&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Permet%20de%20d%C3%A9finir%20la%20taille%20et%20la%20position%20d&#39;une%20case%22%20style%3D%22text%3Bhtml%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3BwhiteSpace%3Dwrap%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22119%22%20y%3D%221280%22%20width%3D%22160%22%20height%3D%2250%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="400" y="1280" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="a-YRZIdJ3hHmRJjhJrP--5" value="Main client" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="400" y="1480" width="160" height="50" as="geometry" />
+        <mxCell id="a-YRZIdJ3hHmRJjhJrP--5" value="Main client qui permet de répartir les images à calculer aux machines disponibles. Cela permet de calculer l&#39;image complète&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1480" width="160" height="80" as="geometry" />
         </mxCell>
         <mxCell id="a-YRZIdJ3hHmRJjhJrP--6" value="Classe qui permet de calculer et générer une case de l&#39;image&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Permet%20de%20d%C3%A9finir%20la%20taille%20et%20la%20position%20d&#39;une%20case%22%20style%3D%22text%3Bhtml%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3BwhiteSpace%3Dwrap%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22119%22%20y%3D%221280%22%20width%3D%22160%22%20height%3D%2250%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="640" y="320" width="160" height="80" as="geometry" />
@@ -118,11 +118,50 @@
         <mxCell id="a-YRZIdJ3hHmRJjhJrP--7" value="Classe qui s&#39;occupe de l&#39;affichage de l&#39;image&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Permet%20de%20d%C3%A9finir%20la%20taille%20et%20la%20position%20d&#39;une%20case%22%20style%3D%22text%3Bhtml%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3BwhiteSpace%3Dwrap%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22119%22%20y%3D%221280%22%20width%3D%22160%22%20height%3D%2250%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="40" y="320" width="160" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="a-YRZIdJ3hHmRJjhJrP--8" value="Main serveur, il permet de se connecter au réseau de récupérer les machines disponibles et de les partager" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="a-YRZIdJ3hHmRJjhJrP--8" value="Main serveur, il permet de se connecter au réseau et de récupérer les machines disponibles et de les partager" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="880" y="320" width="160" height="80" as="geometry" />
         </mxCell>
         <mxCell id="a-YRZIdJ3hHmRJjhJrP--9" value="Classe qui permet de recenser les machines utilisables dans une liste&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Permet%20de%20d%C3%A9finir%20la%20taille%20et%20la%20position%20d&#39;une%20case%22%20style%3D%22text%3Bhtml%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3BwhiteSpace%3Dwrap%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22119%22%20y%3D%221280%22%20width%3D%22160%22%20height%3D%2250%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1440" y="320" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="a-YRZIdJ3hHmRJjhJrP--10" value="Traitement" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1400" width="159" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="a-YRZIdJ3hHmRJjhJrP--11" value="Classe qui permet de calculer et générer une case de l&#39;image&lt;span style=&quot;text-wrap: nowrap; color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Permet%20de%20d%C3%A9finir%20la%20taille%20et%20la%20position%20d&#39;une%20case%22%20style%3D%22text%3Bhtml%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3BwhiteSpace%3Dwrap%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22119%22%20y%3D%221280%22%20width%3D%22160%22%20height%3D%2250%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="119" y="1480" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a-YRZIdJ3hHmRJjhJrP--12" value="Scene" style="html=1;whiteSpace=wrap;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="279" y="1680" width="159" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="a-YRZIdJ3hHmRJjhJrP--13" value="ServiceCalcul" style="html=1;whiteSpace=wrap;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1680" width="159" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="a-YRZIdJ3hHmRJjhJrP--14" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="a-YRZIdJ3hHmRJjhJrP--11" target="a-YRZIdJ3hHmRJjhJrP--12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="350" y="1420" as="sourcePoint" />
+            <mxPoint x="400" y="1370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a-YRZIdJ3hHmRJjhJrP--15" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="a-YRZIdJ3hHmRJjhJrP--11" target="a-YRZIdJ3hHmRJjhJrP--13">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="289" y="1490" as="sourcePoint" />
+            <mxPoint x="369" y="1690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a-YRZIdJ3hHmRJjhJrP--16" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="a-YRZIdJ3hHmRJjhJrP--10" target="a-YRZIdJ3hHmRJjhJrP--3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="129" y="1490" as="sourcePoint" />
+            <mxPoint x="170" y="1690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a-YRZIdJ3hHmRJjhJrP--17" value="Case" style="html=1;whiteSpace=wrap;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="481" y="1680" width="159" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="a-YRZIdJ3hHmRJjhJrP--18" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="a-YRZIdJ3hHmRJjhJrP--10" target="a-YRZIdJ3hHmRJjhJrP--17">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="289" y="1490" as="sourcePoint" />
+            <mxPoint x="369" y="1690" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
