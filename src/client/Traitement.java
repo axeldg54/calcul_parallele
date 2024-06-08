@@ -6,6 +6,7 @@ public class Traitement implements Runnable {
     ServiceCalcul proxy;
     Scene scene;
     Case caseImage;
+    Image image;
 
     public Traitement(ServiceCalcul p, Scene s, Case c) {
         this.proxy = p;
@@ -15,6 +16,6 @@ public class Traitement implements Runnable {
 
     @Override
     public void run() {
-        Image image = proxy.compute(caseImage, scene);
+        image = proxy.compute(caseImage, scene);
     }
 }

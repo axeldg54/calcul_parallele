@@ -15,6 +15,8 @@ public class Calcul implements ServiceCalcul{
 
         System.out.println("Image calculée en :"+duree+" ms");
 
+        
+
         return image;
     }
 }
